@@ -1,61 +1,87 @@
-# E-Commerce Cart Optimizer Backend
+# E-Commerce Cart Optimizer
 
-A secure Express.js backend with MongoDB for the E-Commerce Cart Optimizer application.
+A full-stack web application that helps users optimize their shopping cart using advanced algorithms like the Knapsack problem to maximize value while staying within budget and weight constraints.
 
 ## 🚀 Features
 
-- **JWT Authentication** - Secure token-based authentication
-- **User Management** - Registration, login, profile management
-- **Password Security** - bcrypt hashing with salt rounds
-- **Input Validation** - Express-validator for request validation
-- **Rate Limiting** - Protection against brute force attacks
-- **CORS Support** - Cross-origin resource sharing
-- **Security Headers** - Helmet.js for security
-- **Error Handling** - Comprehensive error management
-- **Admin Routes** - User management for administrators
+### Core Functionality
+- **Smart Cart Optimization** - Uses Knapsack algorithm to maximize value within budget
+- **Multi-Constraint Optimization** - Considers budget, weight, and value simultaneously
+- **Real-time Optimization** - Instant cart optimization as you add/remove items
+- **User Authentication** - Secure JWT-based authentication system
+- **Order Management** - Track and manage purchase history
+- **Responsive Design** - Modern UI built with React, TypeScript, and Tailwind CSS
+
+### Technical Features
+- **Frontend**: React 18 + TypeScript + Vite + Tailwind CSS
+- **Backend**: Node.js + Express + MongoDB
+- **Authentication**: JWT with bcrypt password hashing
+- **Security**: Rate limiting, CORS, Helmet.js protection
+- **Algorithms**: Dynamic Programming Knapsack + Greedy fallback
+
+## 🏗️ Project Structure
+
+```
+E-Commerce Cart Optimizer/
+├── frontend/                 # React + TypeScript frontend
+│   ├── src/
+│   │   ├── algorithms/      # Optimization algorithms
+│   │   ├── components/      # React components
+│   │   ├── context/         # React context providers
+│   │   ├── data/           # Mock data and types
+│   │   └── hooks/          # Custom React hooks
+│   └── package.json
+├── backend/                  # Node.js + Express backend
+│   ├── models/             # MongoDB models
+│   ├── routes/             # API routes
+│   ├── middleware/         # Express middleware
+│   └── server.js
+└── README.md
+```
+
+## 🛠️ Quick Start
+
+### Option 1: Using Scripts (Recommended)
+
+**Windows:**
+```bash
+quick-start.bat
+```
+
+**Linux/Mac:**
+```bash
+chmod +x quick-start.sh
+./quick-start.sh
+```
+
+### Option 2: Manual Setup
+
+#### Backend Setup
+```bash
+cd backend
+npm install
+cp config.env .env
+# Edit .env with your MongoDB connection
+npm run dev
+```
+
+#### Frontend Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
 ## 📋 Prerequisites
 
-- Node.js (v14 or higher)
-- MongoDB (local or cloud instance)
-- npm or yarn
-
-## 🛠️ Installation
-
-1. **Install dependencies:**
-   ```bash
-   cd backend
-   npm install
-   ```
-
-2. **Set up environment variables:**
-   ```bash
-   # Copy the config file
-   cp config.env .env
-   
-   # Edit the .env file with your configuration
-   ```
-
-3. **Start MongoDB:**
-   ```bash
-   # Local MongoDB
-   mongod
-   
-   # Or use MongoDB Atlas (cloud)
-   ```
-
-4. **Run the server:**
-   ```bash
-   # Development mode
-   npm run dev
-   
-   # Production mode
-   npm start
-   ```
+- **Node.js** (v14 or higher)
+- **MongoDB** (local or MongoDB Atlas)
+- **npm** or **yarn**
 
 ## 🔧 Configuration
 
-Edit `config.env` with your settings:
+### Backend Environment Variables
+Create `.env` file in `backend/` directory:
 
 ```env
 # Server Configuration
@@ -77,163 +103,110 @@ RATE_LIMIT_MAX_REQUESTS=100
 CORS_ORIGIN=http://localhost:5173
 ```
 
-## 📚 API Endpoints
+## 🧠 Optimization Algorithms
 
-### Authentication Routes
+### Knapsack Algorithm
+The core optimization uses a dynamic programming approach to solve the 0/1 Knapsack problem:
 
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| POST | `/api/auth/register` | Register new user | Public |
-| POST | `/api/auth/login` | Login user | Public |
-| POST | `/api/auth/validate` | Validate JWT token | Public |
-| GET | `/api/auth/me` | Get current user profile | Private |
-| POST | `/api/auth/logout` | Logout user | Private |
-| POST | `/api/auth/refresh` | Refresh JWT token | Private |
+- **Objective**: Maximize total value while staying within budget and weight limits
+- **Constraints**: Budget limit, weight limit, item availability
+- **Algorithm**: Space-optimized 2D dynamic programming
+- **Fallback**: Greedy algorithm for large datasets
 
-### User Routes
+### Key Features
+- **Memory Efficient**: Uses rolling arrays to prevent memory overflow
+- **Precision Control**: Limits decimal precision to prevent floating-point issues
+- **Scalability**: Automatically switches to greedy algorithm for large datasets
+- **Multi-Constraint**: Handles budget, weight, and value simultaneously
 
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| GET | `/api/user/profile` | Get user profile | Private |
-| PUT | `/api/user/profile` | Update user profile | Private |
-| PUT | `/api/user/password` | Change password | Private |
-| DELETE | `/api/user/profile` | Delete account | Private |
-| GET | `/api/user/stats` | Get user statistics | Private |
+## 🎯 How It Works
 
-### Admin Routes
+1. **Add Products**: Browse and add items to your cart
+2. **Set Constraints**: Define your budget and weight limits
+3. **Optimize**: Click optimize to run the Knapsack algorithm
+4. **Review**: See the optimized cart with maximum value
+5. **Checkout**: Complete your purchase with the optimized selection
 
-| Method | Endpoint | Description | Access |
-|--------|----------|-------------|--------|
-| GET | `/api/user/admin/users` | Get all users | Admin |
-| PUT | `/api/user/admin/users/:id` | Update user | Admin |
+## 📚 API Documentation
 
-## 🔐 Authentication
+### Authentication Endpoints
 
-### JWT Token Format
-```
-Authorization: Bearer <token>
-```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Register new user |
+| POST | `/api/auth/login` | Login user |
+| GET | `/api/auth/me` | Get current user profile |
+| POST | `/api/auth/logout` | Logout user |
 
-### Token Payload
-```json
-{
-  "id": "user_id",
-  "email": "user@example.com",
-  "role": "user",
-  "iat": 1234567890,
-  "exp": 1234567890
-}
-```
+### User Management
 
-## 📝 Request Examples
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/user/profile` | Get user profile |
+| PUT | `/api/user/profile` | Update user profile |
+| PUT | `/api/user/password` | Change password |
 
-### Register User
-```bash
-curl -X POST http://localhost:5000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "password": "Password123"
-  }'
-```
+## 🎨 Frontend Features
 
-### Login User
-```bash
-curl -X POST http://localhost:5000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "john@example.com",
-    "password": "Password123"
-  }'
-```
+### Components
+- **ProductList**: Browse and add products to cart
+- **Cart**: View and optimize shopping cart
+- **OptimizationControls**: Set budget and weight constraints
+- **OptimizationResults**: Display optimized cart results
+- **Orders**: Track purchase history
+- **AuthPage**: User authentication interface
 
-### Get Profile (with token)
-```bash
-curl -X GET http://localhost:5000/api/auth/me \
-  -H "Authorization: Bearer <your-jwt-token>"
-```
+### State Management
+- **AuthContext**: User authentication state
+- **CartContext**: Shopping cart state and optimization
+- **Toast Notifications**: User feedback system
 
-## 🛡️ Security Features
+## 🔐 Security Features
 
+- **JWT Authentication**: Secure token-based auth
 - **Password Hashing**: bcrypt with salt rounds
-- **JWT Tokens**: Secure token-based authentication
 - **Rate Limiting**: Protection against brute force
 - **Input Validation**: Request data validation
 - **CORS**: Cross-origin resource sharing
 - **Security Headers**: Helmet.js protection
-- **Error Handling**: Secure error responses
 
-## 🧪 Testing
+## 🧪 Development
 
+### Running in Development Mode
+
+**Backend:**
 ```bash
-# Run tests
-npm test
-
-# Run tests in watch mode
-npm test -- --watch
+cd backend
+npm run dev
 ```
 
-## 📊 Database Schema
-
-### User Model
-```javascript
-{
-  name: String (required, 2-50 chars),
-  email: String (required, unique, valid email),
-  password: String (required, min 6 chars, hashed),
-  role: String (enum: 'user', 'admin', default: 'user'),
-  isActive: Boolean (default: true),
-  lastLogin: Date (default: now),
-  createdAt: Date (default: now),
-  updatedAt: Date (default: now)
-}
+**Frontend:**
+```bash
+cd frontend
+npm run dev
 ```
 
-## 🚨 Error Handling
+### Building for Production
 
-The API returns consistent error responses:
-
-```json
-{
-  "error": "Error type",
-  "message": "Human-readable error message",
-  "details": [] // Validation errors (if applicable)
-}
+**Backend:**
+```bash
+cd backend
+npm start
 ```
 
-## 🔄 Development
-
-### File Structure
+**Frontend:**
+```bash
+cd frontend
+npm run build
 ```
-backend/
-├── models/
-│   └── User.js
-├── routes/
-│   ├── auth.js
-│   └── user.js
-├── middleware/
-│   └── auth.js
-├── server.js
-├── package.json
-└── config.env
-```
-
-### Adding New Routes
-
-1. Create route file in `routes/`
-2. Add validation rules
-3. Implement controller logic
-4. Add to `server.js`
-5. Test with Postman/curl
 
 ## 🚀 Deployment
 
-### Environment Variables
-- Set `NODE_ENV=production`
-- Use strong `JWT_SECRET`
-- Configure MongoDB Atlas
-- Set proper CORS origins
+### Environment Setup
+1. Set `NODE_ENV=production`
+2. Use strong `JWT_SECRET`
+3. Configure MongoDB Atlas
+4. Set proper CORS origins
 
 ### Security Checklist
 - [ ] Change default JWT secret
@@ -243,14 +216,27 @@ backend/
 - [ ] Enable security headers
 - [ ] Use environment variables
 
-## 📞 Support
+## 🤝 Contributing
 
-For issues and questions:
-1. Check the logs for error details
-2. Verify MongoDB connection
-3. Test API endpoints with Postman
-4. Check environment variables
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
 ## 📄 License
 
-MIT License - see LICENSE file for details. 
+MIT License - see LICENSE file for details.
+
+## 🆘 Support
+
+For issues and questions:
+1. Check the application logs
+2. Verify MongoDB connection
+3. Test API endpoints
+4. Check environment variables
+5. Review browser console for frontend issues
+
+---
+
+**Built with ❤️ using React, Node.js, and advanced optimization algorithms** 
