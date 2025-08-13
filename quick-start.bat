@@ -60,8 +60,8 @@ echo 🎉 Setup Complete!
 echo ==================
 echo.
 echo 📱 Frontend: http://localhost:5173
-echo 🔧 Backend:  http://localhost:5000
-echo 🔍 Health:   http://localhost:5000/api/health
+echo 🔧 Backend:  https://groceries-cart-optimizerr.onrender.com
+echo 🔍 Health:   https://groceries-cart-optimizerr.onrender.com/api/health
 echo.
 echo 👤 Demo Users:
 echo    Email: john@example.com, Password: Password123

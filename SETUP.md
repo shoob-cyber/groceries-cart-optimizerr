@@ -87,8 +87,8 @@ npm start
 ```
 ✅ Connected to MongoDB
 🚀 Server running on port 5000
-📱 API available at http://localhost:5000/api
-🔍 Health check: http://localhost:5000/api/health
+📱 API available at https://groceries-cart-optimizerr.onrender.com/api
+🔍 Health check: https://groceries-cart-optimizerr.onrender.com/api/health
 ```
 
 ## 🎨 Frontend Setup
@@ -120,12 +120,12 @@ npm run dev
 
 **Health Check:**
 ```bash
-curl http://localhost:5000/api/health
+curl https://groceries-cart-optimizerr.onrender.com/api/health
 ```
 
 **Register User:**
 ```bash
-curl -X POST http://localhost:5000/api/auth/register \
+curl -X POST https://groceries-cart-optimizerr.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Test User",
@@ -136,7 +136,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 
 **Login User:**
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST https://groceries-cart-optimizerr.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "john@example.com",

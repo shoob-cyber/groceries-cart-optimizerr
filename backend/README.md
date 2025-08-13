@@ -129,7 +129,7 @@ Authorization: Bearer <token>
 
 ### Register User
 ```bash
-curl -X POST http://localhost:5000/api/auth/register \
+curl -X POST https://groceries-cart-optimizerr.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "name": "John Doe",
@@ -140,7 +140,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 
 ### Login User
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST https://groceries-cart-optimizerr.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "email": "john@example.com",
@@ -150,7 +150,7 @@ curl -X POST http://localhost:5000/api/auth/login \
 
 ### Get Profile (with token)
 ```bash
-curl -X GET http://localhost:5000/api/auth/me \
+curl -X GET https://groceries-cart-optimizerr.onrender.com/api/auth/me \
   -H "Authorization: Bearer <your-jwt-token>"
 ```
 

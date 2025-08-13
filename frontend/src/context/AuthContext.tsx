@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer, ReactNode, useEffect } fr
 import { User, AuthState } from '../types';
 
 // API base URL
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://groceries-cart-optimizerr.onrender.com/api';
 
 type AuthAction =
   | { type: 'LOGIN_START' }
