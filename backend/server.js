@@ -15,14 +15,28 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 
 // CORS configuration
+// CORS configuration - Allow dashboard and website origins for development
 app.use(cors({
-  origin:[
+    origin: [
     'https://groceries-cart-optimizerr.vercel.app',
     'https://thela.icu',
-  ],
-  credentials: true
-}));
-
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS','HEAD'],
+    allowedHeaders: [
+      'Accept',
+      'Accept-Language',
+      'Content-Type',
+      'Authorization',
+      'X-Requested-With',
+      'X-CSRF-Token',
+      'x-auth-token',
+      'Origin',
+      'Cache-Control',
+      'Pragma'
+    ],
+    exposedHeaders: ['Set-Cookie', 'Date', 'ETag', 'Content-type']
+  }));
 // Rate limiting
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
