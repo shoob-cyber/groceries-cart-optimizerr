@@ -109,12 +109,6 @@ export function Login({ onSwitchToRegister }: LoginProps) {
             </button>
           </p>
         </div>
-
-        <div className="mt-6 p-4 bg-cream-50 rounded-lg animate-fadeInUp stagger-5 hover-lift transition-all duration-300 border border-cream-200">
-          <p className="text-sm text-secondary-700 mb-2 font-medium">Demo Credentials:</p>
-          <p className="text-xs text-secondary-600">Email: john@example.com</p>
-          <p className="text-xs text-secondary-600">Password: password123</p>
-        </div>
       </div>
     </div>
   );
