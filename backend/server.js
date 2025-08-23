@@ -20,6 +20,7 @@ app.use(cors({
     origin: [
     'https://groceries-cart-optimizerr.vercel.app',
     'https://thela.icu',
+    'https://www.thela.icu', // <-- ADD THIS LINE
     ],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS','HEAD'],
